@@ -46,7 +46,7 @@ Desc：
 对象保存path、name新增自定义规则。
 ![custom-rules.png](./resources/custom-rules.png)
 
-[1.0.3](./release/1.0.3/)
+[1.0.3](./release/1.0.3.zip)
 
 自定义规则支持参数类型：
 
