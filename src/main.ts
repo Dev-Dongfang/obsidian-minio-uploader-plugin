@@ -18,6 +18,7 @@ interface MinioPluginSettings {
 	docsPreview: string;
 	nameRule: string;
 	pathRule: string;
+	customRule: string;
 }
 
 const DEFAULT_SETTINGS: MinioPluginSettings = {
@@ -34,6 +35,7 @@ const DEFAULT_SETTINGS: MinioPluginSettings = {
 	docsPreview: '',
 	nameRule: 'local',
 	pathRule: 'root',
+	customRule: ''
 }
 
 export default class MinioUploaderPlugin extends Plugin {
@@ -143,6 +145,25 @@ export default class MinioUploaderPlugin extends Plugin {
 
 	genObjectName (file: File) {
 		let objectName = ''
+		if (this.settings.customRule.length > 0) {
+			const [filename, ext] = file.name.split('.')
+
+			objectName = this.settings.customRule
+				.replace('FILENAME', filename)
+				.replace('EXT', ext)
+				.replace('TIMESTAMP', moment().valueOf().toString())
+				.replace('FILETYPE',this.getFileType(file))
+			
+			const reg = /\$\{(.*?)\}/g;
+			let match;
+			const formatter = moment(Date.now(), true)
+			while ((match = reg.exec(objectName)) !== null) {
+				objectName = objectName.replace(match[0], formatter.format(match[1]))
+			}
+			
+			return objectName
+		}
+
 		switch (this.settings.pathRule) {
 			case 'root':
 				objectName = ''
@@ -395,6 +416,16 @@ class MinioSettingTab extends PluginSettingTab {
 				}));
 		containerEl.createEl("h3", { text: t("Object rules") });
 		containerEl.createEl("br");
+		new Setting(containerEl)
+			.setName(t('Object custom rules'))
+			.setDesc(t('Object custom rules description'))
+			.addText(text => text
+				.setPlaceholder(t('Enter custom rules'))
+				.setValue(this.plugin.settings.customRule + '')
+				.onChange(async (value) => {
+					this.plugin.settings.customRule = value.trim();
+					await this.plugin.saveSettings();
+				}))
 		new Setting(containerEl)
 			.setName(t('Object naming rules'))
 			.setDesc(t('Naming rules description'))

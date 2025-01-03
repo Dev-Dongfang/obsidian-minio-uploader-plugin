@@ -22,6 +22,9 @@ export default {
 	'File type directory': '按文件类型划分目录',
 	'Date directory': '按日期划分目录',
 	'File type and date directory': '按文件类型+日期划分目录',
+	'Object custom rules': 'Object 自定义规则',
+	'Object custom rules description': '自定义规则包括path、文件名两部分，设置后会覆盖后面两项设置。（\neg: \n原文件名：FILENAME）\n后缀：EXT\n时间戳：TIMESTAMP\n日期format格式:${YYYYMMDDHHmmSS}）示例：personal/${YYYY/MM}/TIMESTAMP_FILENAME.EXT',
+	'Enter custom rules': '输入自定义规则',
 
 	'Preview': '预览配置',
 	'Image preview': '图片预览',

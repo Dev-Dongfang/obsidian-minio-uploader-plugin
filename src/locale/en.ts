@@ -22,6 +22,9 @@ export default {
 	'File type directory': 'File type directory',
 	'Date directory': 'Date directory',
 	'File type and date directory': 'File type and date directory',
+	'Object custom rules': 'Object 自定义规则',
+	'Object custom rules description': '自定义规则包括path、文件名两部分，设置后会覆盖后面两项设置。（eg: 原文件名-${FILENAME}），日期:${YYYYMMDDHHmmSS}',
+	'Enter custom rules': '输入自定义规则',
 
 	'Preview': 'Preview',
 	'Image preview': 'Image preview',

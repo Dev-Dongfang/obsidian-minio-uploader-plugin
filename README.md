@@ -36,3 +36,24 @@ Secondly, it is necessary to enable anonymous access to files in the Bucket sett
 ## Thanks
 
 This project draws inspiration from the [S3 image uploader](https://github.com/jvsteiner/s3-image-uploader) \ [Editing ToolBar](https://github.com/PKM-er/obsidian-editing-toolbar) plugin
+
+
+## 版本说明(fork)
+
+### 1.0.3 
+
+Desc：
+对象保存path、name新增自定义规则。
+![custom-rules.png](./resources/custom-rules.png)
+
+[1.0.3](./release/1.0.3/)
+
+自定义规则支持参数类型：
+
+- FILENAME：文件名
+- EXT：文件后缀
+- FILETYPE：文件类型
+- TIMESTAMP：当前时间戳
+- ${YYYYMM}：日期formatter
+
+eg. personal/${YYYY/MM}/TIMESTAMP.EXT：包含自定义path、日期格式化、时间戳
